@@ -4,7 +4,65 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Dekor Asistanı</title>
-  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #2e2e2e;
+      color: #f0f0f0;
+    }
+
+    header {
+      background: linear-gradient(90deg, #c0c0c0, #8a8d8f);
+      padding: 20px;
+      text-align: center;
+      color: #2e2e2e;
+      font-size: 1.8em;
+    }
+
+    main {
+      padding: 20px;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      border-radius: 6px;
+      border: none;
+      font-size: 1em;
+      margin-bottom: 10px;
+    }
+
+    button {
+      background: linear-gradient(45deg, #b76e79, #c0c0c0);
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 8px;
+      font-size: 1em;
+      cursor: pointer;
+    }
+
+    .project-card {
+      background-color: #b87333;
+      padding: 12px;
+      margin: 10px 0;
+      border-radius: 6px;
+      color: #fff;
+    }
+
+    footer {
+      background-color: #1f1f1f;
+      text-align: center;
+      padding: 10px;
+    }
+
+    footer nav a {
+      color: #ccc;
+      margin: 0 10px;
+      text-decoration: none;
+    }
+  </style>
 </head>
 <body>
   <header>
@@ -29,6 +87,44 @@
     </nav>
   </footer>
 
-  <script src="suggest.js"></script>
+  <script>
+    function suggestProjects() {
+      const input = document.getElementById("material-input").value.toLowerCase();
+      const materials = input.split(",").map(item => item.trim());
+      const suggestions = document.getElementById("suggestions");
+
+      const data = {
+        projects: [
+          {
+            name: "Beton Saksı",
+            materials: ["çimento", "su", "silikon kalıp", "zımpara"]
+          },
+          {
+            name: "Makrome Duvar Süsü",
+            materials: ["pamuk ipi", "ahşap çubuk", "makas"]
+          },
+          {
+            name: "Cam Mumluk",
+            materials: ["cam kavanoz", "jüt ip", "mum", "sıcak silikon"]
+          }
+        ]
+      };
+
+      const matched = data.projects.filter(project =>
+        project.materials.every(mat => materials.includes(mat.toLowerCase()))
+      );
+
+      if (matched.length === 0) {
+        suggestions.innerHTML = "<p>😕 Uygun proje bulunamadı.</p>";
+      } else {
+        suggestions.innerHTML = matched.map(project => `
+          <div class="project-card">
+            <strong>${project.name}</strong><br/>
+            Malzemeler: ${project.materials.join(", ")}
+          </div>
+        `).join("");
+      }
+    }
+  </script>
 </body>
 </html>
