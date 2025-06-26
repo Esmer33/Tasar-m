@@ -14,40 +14,36 @@ header {
   font-weight: bold;
 }
 
-.actions {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
+main {
   padding: 20px;
 }
 
-.actions button {
-  background: linear-gradient(45deg, #b76e79, #c0c0c0);
-  color: #fff;
+.material-check input {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
   border: none;
+  border-radius: 6px;
+  font-size: 1em;
+}
+
+.material-check button {
+  background: linear-gradient(45deg, #b76e79, #c0c0c0);
+  color: white;
   padding: 12px 20px;
+  border: none;
   border-radius: 8px;
   font-size: 1em;
   cursor: pointer;
 }
 
-.categories, .featured {
-  padding: 20px;
-}
-
-.category-list, .projects {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-}
-
-.cat, .project-card {
+.project-card {
   background-color: #b87333;
-  padding: 10px 15px;
+  color: #fff;
+  padding: 12px;
+  margin: 10px 0;
   border-radius: 6px;
-  box-shadow: 1px 1px 6px rgba(0,0,0,0.3);
-  cursor: pointer;
+  box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.3);
 }
 
 footer {
