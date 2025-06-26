@@ -11,29 +11,14 @@
     <h1>Dekor Asistanı ⚙️</h1>
   </header>
 
-  <section class="actions">
-    <button>🔍 Bugün Ne Yapsam?</button>
-    <button>🧰 Malzememe Göre Ara</button>
-  </section>
-
-  <section class="categories">
-    <h2>Kategoriler</h2>
-    <div class="category-list">
-      <div class="cat">Makrome</div>
-      <div class="cat">Beton</div>
-      <div class="cat">Cam</div>
-      <div class="cat">Çiçek</div>
-      <div class="cat">Ahşap</div>
-    </div>
-  </section>
-
-  <section class="featured">
-    <h2>Öne Çıkan Projeler</h2>
-    <div class="projects">
-      <div class="project-card">Beton Saksı</div>
-      <div class="project-card">Rose Gold Mumluk</div>
-    </div>
-  </section>
+  <main>
+    <section class="material-check">
+      <h2>Evde Hangi Malzemeler Var?</h2>
+      <input type="text" id="material-input" placeholder="Örnek: çimento, pamuk ipi, silikon kalıp" />
+      <button onclick="suggestProjects()">🔍 Neler Yapabilirim?</button>
+      <div id="suggestions"></div>
+    </section>
+  </main>
 
   <footer>
     <nav>
@@ -43,5 +28,7 @@
       <a href="#">Profil</a>
     </nav>
   </footer>
+
+  <script src="suggest.js"></script>
 </body>
 </html>
