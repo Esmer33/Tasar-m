@@ -2,15 +2,11 @@
   "projects": [
     {
       "name": "Beton Saksı",
-      "materials": ["çimento", "su", "silikon kalıp", "zımpara"],
-      "steps": ["Çimento ve suyu karıştır.", "Kalıba dök.", "24 saat beklet.", "Zımpara ile temizle."],
-      "image": "beton_saksi.jpg"
+      "materials": ["çimento", "su", "silikon kalıp", "zımpara"]
     },
     {
       "name": "Makrome Duvar Süsü",
-      "materials": ["pamuk ipi", "ahşap çubuk", "makas"],
-      "steps": ["İpleri kes.", "Çubuğa bağla.", "Ör ve süsle."],
-      "image": "makrome_susu.jpg"
+      "materials": ["pamuk ipi", "ahşap çubuk", "makas"]
     }
   ]
 }
