@@ -1,0 +1,64 @@
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background-color: #2e2e2e;
+  color: #f0f0f0;
+}
+
+header {
+  background: linear-gradient(90deg, #c0c0c0, #8a8d8f);
+  padding: 20px;
+  text-align: center;
+  color: #2e2e2e;
+  font-size: 1.8em;
+  font-weight: bold;
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 20px;
+}
+
+.actions button {
+  background: linear-gradient(45deg, #b76e79, #c0c0c0);
+  color: #fff;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-size: 1em;
+  cursor: pointer;
+}
+
+.categories, .featured {
+  padding: 20px;
+}
+
+.category-list, .projects {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.cat, .project-card {
+  background-color: #b87333;
+  padding: 10px 15px;
+  border-radius: 6px;
+  box-shadow: 1px 1px 6px rgba(0,0,0,0.3);
+  cursor: pointer;
+}
+
+footer {
+  background-color: #1f1f1f;
+  padding: 10px;
+  text-align: center;
+}
+
+footer nav a {
+  color: #ccc;
+  margin: 0 10px;
+  text-decoration: none;
+  font-weight: 500;
+}
