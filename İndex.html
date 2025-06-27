@@ -1,53 +1,58 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html>
 <head>
-  <meta charset="UTF-8" />
-  <title>Mini Code Editor</title>
-  <style>
-    body { margin: 0; background: #1e1e1e; color: #fff; font-family: monospace; }
-    textarea, iframe {
-      width: 100%;
-      box-sizing: border-box;
-      border: none;
-      padding: 10px;
-    }
-    textarea {
-      height: 40vh;
-      background: #2b2b2b;
-      color: #f1f1f1;
-      resize: vertical;
-      font-size: 14px;
-    }
-    iframe {
-      height: 50vh;
-      background: #fff;
-      border-top: 2px solid #555;
-    }
-    button {
-      width: 100%;
-      padding: 10px;
-      background: #3a3a3a;
-      color: #fff;
-      border: none;
-      font-size: 16px;
-      cursor: pointer;
-    }
-    button:hover {
-      background: #555;
-    }
-  </style>
+  <meta charset="UTF-8">
+  <title>Yüz Değiştirme</title>
+  <script defer src="https://cdn.jsdelivr.net/npm/face-api.js"></script>
 </head>
 <body>
-  <textarea id="code" placeholder="HTML ve JS kodlarını buraya yaz..."></textarea>
-  <button onclick="runCode()">💻 Kodu Çalıştır</button>
-  <iframe id="preview"></iframe>
+  <h2>Yüz Değiştirici</h2>
+  <input type="file" id="src" accept="image/*">
+  <input type="file" id="target" accept="image/*"><br><br>
+  <canvas id="canvas"></canvas>
 
   <script>
-    function runCode() {
-      const code = document.getElementById("code").value;
-      const preview = document.getElementById("preview");
-      preview.srcdoc = code;
+    const canvas = document.getElementById('canvas')
+    const ctx = canvas.getContext('2d')
+
+    Promise.all([
+      faceapi.nets.tinyFaceDetector.loadFromUri('/models'),
+      faceapi.nets.faceLandmark68Net.loadFromUri('/models')
+    ]).then(() => console.log("Modeller yüklendi"))
+
+    const input1 = document.getElementById('src')
+    const input2 = document.getElementById('target')
+
+    function loadImage(input) {
+      return new Promise((resolve) => {
+        const reader = new FileReader()
+        reader.onload = () => {
+          const img = new Image()
+          img.onload = () => resolve(img)
+          img.src = reader.result
+        }
+        reader.readAsDataURL(input.files[0])
+      })
     }
+
+    async function swapFaces() {
+      const img1 = await loadImage(input1)
+      const img2 = await loadImage(input2)
+
+      canvas.width = img2.width
+      canvas.height = img2.height
+      ctx.drawImage(img2, 0, 0)
+
+      const det1 = await faceapi.detectSingleFace(img1, new faceapi.TinyFaceDetectorOptions()).withFaceLandmarks()
+      const det2 = await faceapi.detectSingleFace(img2, new faceapi.TinyFaceDetectorOptions()).withFaceLandmarks()
+      if (!det1 || !det2) return alert("Yüz algılanamadı")
+
+      const { box } = det2.detection
+      ctx.drawImage(img1, box.x, box.y, box.width, box.height)
+    }
+
+    input1.onchange = swapFaces
+    input2.onchange = swapFaces
   </script>
 </body>
 </html>
